@@ -2,12 +2,12 @@
 CREATE DATABASE vacollector;
 
 -- Сброс всех таблиц
-DROP TABLE IF EXISTS employer CASCADE;
+DROP TABLE IF EXISTS employers CASCADE;
 DROP TABLE IF EXISTS vacancies CASCADE;
 DROP TABLE IF EXISTS experiences CASCADE;
 DROP TABLE IF EXISTS vacancy_types CASCADE;
 
--- Таблица employer (Компания / Работадатель)
+-- Таблица employers (Компания / Работодатель)
 CREATE TABLE IF NOT EXISTS employers (
     id                INTEGER PRIMARY KEY NOT NULL,
     name              VARCHAR NOT NULL,
@@ -31,21 +31,29 @@ CREATE TABLE IF NOT EXISTS vacancy_types (
     ru_type      VARCHAR
 );
 
--- Таблица vacancy (Вакансии)
+-- Таблица platforms (Платформы)
+CREATE TABLE IF NOT EXISTS platforms (
+    id           SERIAL NOT NULL PRIMARY KEY,
+    vacancy_type VARCHAR NOT NULL,
+    ru_type      VARCHAR
+);
+
+-- Таблица vacancies (Вакансии)
 CREATE TABLE IF NOT EXISTS vacancies (
     id             INTEGER PRIMARY KEY NOT NULL,
     name           TEXT,
     salary_from    INTEGER,
     salary_to      INTEGER,
+    currency       VARCHAR,
     type_id        INTEGER NOT NULL REFERENCES vacancy_types (id),
     published_at   DATE,
     created_at     DATE,
     archived       BOOLEAN,
     alternate_url  TEXT,
+    employer_id    INTEGER NOT NULL REFERENCES employers (id),
     requirement    TEXT,
     responsibility TEXT,
     experience_id  INTEGER NOT NULL REFERENCES experiences (id),
     employment     VARCHAR,
-    employer_id    INTEGER NOT NULL REFERENCES employers (id)
+    platform_id    INTEGER NOT NULL REFERENCES platforms (id)
 );
-
