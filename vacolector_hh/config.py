@@ -1,12 +1,26 @@
-import os
 from configparser import ConfigParser
 
-from vacolector_hh.constants import CODE_DIR
-
-file_name = os.path.join(CODE_DIR, 'database.ini')
+from vacolector_hh.constants import DATABASE_CONFIG
 
 
-def config(filename=file_name, section="postgresql"):
+def config(filename=DATABASE_CONFIG, section="postgresql"):
+    """
+    Read the database configuration file and return the configuration
+    parameters for a specific section.
+
+    Args:
+        filename (str, optional): The name of the configuration file.
+        Defaults to DATABASE_CONFIG.
+        section (str, optional): The section in the configuration file
+        to retrieve parameters from. Defaults to "postgresql".
+
+    Returns:
+        dict: Dictionary containing the configuration parameters.
+
+    Raises:
+        Exception: If the specified section is not found in the
+        configuration file.
+    """
     db = {}
 
     parser = ConfigParser()

@@ -10,8 +10,8 @@ DROP TABLE IF EXISTS vacancy_types CASCADE;
 -- Таблица employers (Компания / Работодатель)
 CREATE TABLE IF NOT EXISTS employers (
     id                INTEGER PRIMARY KEY NOT NULL,
-    name              VARCHAR NOT NULL,
-    alternate_url     TEXT NOT NULL,
+    name              VARCHAR,
+    alternate_url     TEXT,
     logo_url_90       TEXT,
     logo_url_240      TEXT,
     logo_url_original TEXT
@@ -57,3 +57,12 @@ CREATE TABLE IF NOT EXISTS vacancies (
     employment     VARCHAR,
     platform_id    INTEGER NOT NULL REFERENCES platforms (id)
 );
+
+-- Очистка таблицы employers
+TRUNCATE TABLE employers CASCADE;
+
+-- Удаление employer по employer ID
+DELETE FROM employers WHERE id = 851604;
+
+-- Добавление employer id в базу
+INSERT INTO employers (id) VALUES (851604);
