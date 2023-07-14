@@ -1,3 +1,4 @@
+import argparse
 import traceback
 
 from vacolector_hh.constants import EMPLOYERS_LIST
@@ -509,5 +510,30 @@ def main():
     user_interaction(db_manager, file_handler, hh_parser)
 
 
+def arg_parser():
+    parser = argparse.ArgumentParser(description='Va_Collector')
+    parser.add_argument(
+        '--desc',
+        action='store_const',
+        const=True,
+        help='App Description'
+    )
+
+    args = parser.parse_args()
+    if args.desc:
+        print(parser.description)
+        print(
+            """
+    The Vacancy Parser is a Python project that utilizes the 
+    HeadHunter API to retrieve job vacancies and employers based 
+    on specific criteria. It provides a convenient way to search 
+    and filter job listings and obtain details about the 
+    corresponding companies.
+    """
+            )
+        exit()
+
+
 if __name__ == '__main__':
+    arg_parser()
     main()
