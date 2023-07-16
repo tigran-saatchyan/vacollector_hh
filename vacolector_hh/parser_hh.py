@@ -59,7 +59,8 @@ class HHParser(Parser, RequestMixin):
                 'salary'] else 0
             salary_to = vacancy['salary'].get('to', 0) if vacancy[
                 'salary'] else 0
-            currency = vacancy['salary'].get('currency', '')
+            currency = vacancy['salary'].get('currency', '') if vacancy[
+                'salary'] else ''
 
             vacancies_list.append(
                 Vacancy(

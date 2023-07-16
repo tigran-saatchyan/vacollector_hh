@@ -32,8 +32,15 @@ To install and set up the project using Poetry, follow the steps below:
    ```shell
    poetry shell
    ```
-
-6. Start using the Vacancy Parser!
+6. Create database.ini in the project directory vacolector_hh/vacolector_hh:
+   ```shell
+   [postgres]
+   host = 
+   user = 
+   password = 
+   port = 
+   ```
+7. Start using the Vacancy Parser!
 
 ## Usage
 
@@ -43,8 +50,7 @@ To run the Vacancy Parser, use the following command:
 ```shell
 python vacolector_hh/main.py [command]
 ```
-
-Replace `[command]` with one of the available commands, such as `search` or `get-employers`, and replace `[options]` with the appropriate command options.
+To run the Vacancy Parser no parameters to be passed to the `[command]`
 
 For detailed information about the available commands and options, run:
 ```shell
